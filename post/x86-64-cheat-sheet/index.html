@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>X86_64 Cheat Sheet : Assembly language has the same commands as machine language but instead of 0 and 1, it uses names. - Extrasom</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="When i was watching/participating in @tomasz live streaming, one of the things that caught my eye was the instruction encodings when in long mode.">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Extrasom" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Extrasom</div>
+					
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+	
+    <script data-cfasync="false">
+    var _avp = _avp || [];
+    (function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = window.location.protocol + '//adserver.adreactor.com/js/libcode3.js';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+    })();
+    </script>
+    
+	
+	    
+    <script>
+    if (!document.cookie || document.cookie.indexOf('AVPWCAP=') == -1) {
+    _avp.push({ alias: '/', type: 'window', zid: 23, pid: 8697 });
+    }
+    </script>
+    
+	
+<script>(function(a,b,c){Object.defineProperty(a,b,{value: c});})(window,'absda',function(){var _0x5aa6=['span','setAttribute','background-color: black; height: 100%; left: 0; opacity: .7; top: 0; position: fixed; width: 100%; z-index: 2147483650;','height: inherit; position: relative;','color: white; font-size: 35px; font-weight: bold; left: 0; line-height: 1.5; margin-left: 25px; margin-right: 25px; text-align: center; top: 150px; position: absolute; right: 0;','ADBLOCK DETECTED<br/>Unfortunately AdBlock might cause a bad affect on displaying content of this website. Please, deactivate it.','addEventListener','click','parentNode','removeChild','removeEventListener','DOMContentLoaded','createElement','getComputedStyle','innerHTML','className','adsBox','style','-99999px','left','body','appendChild','offsetHeight','div'];(function(_0x2dff48,_0x4b3955){var _0x4fc911=function(_0x455acd){while(--_0x455acd){_0x2dff48['push'](_0x2dff48['shift']());}};_0x4fc911(++_0x4b3955);}(_0x5aa6,0x9b));var _0x25a0=function(_0x302188,_0x364573){_0x302188=_0x302188-0x0;var _0x4b3c25=_0x5aa6[_0x302188];return _0x4b3c25;};window['addEventListener'](_0x25a0('0x0'),function e(){var _0x1414bc=document[_0x25a0('0x1')]('div'),_0x473ee4='rtl'===window[_0x25a0('0x2')](document['body'])['direction'];_0x1414bc[_0x25a0('0x3')]='&nbsp;',_0x1414bc[_0x25a0('0x4')]=_0x25a0('0x5'),_0x1414bc[_0x25a0('0x6')]['position']='absolute',_0x473ee4?_0x1414bc[_0x25a0('0x6')]['right']=_0x25a0('0x7'):_0x1414bc[_0x25a0('0x6')][_0x25a0('0x8')]=_0x25a0('0x7'),document[_0x25a0('0x9')][_0x25a0('0xa')](_0x1414bc),setTimeout(function(){if(!_0x1414bc[_0x25a0('0xb')]){var _0x473ee4=document[_0x25a0('0x1')](_0x25a0('0xc')),_0x3c0b3b=document[_0x25a0('0x1')](_0x25a0('0xc')),_0x1f5f8c=document[_0x25a0('0x1')](_0x25a0('0xd')),_0x5a9ba0=document['createElement']('p');_0x473ee4[_0x25a0('0xe')]('style',_0x25a0('0xf')),_0x3c0b3b['setAttribute']('style',_0x25a0('0x10')),_0x1f5f8c[_0x25a0('0xe')](_0x25a0('0x6'),'color: white; cursor: pointer; font-size: 50px; font-weight: bold; position: absolute; right: 30px; top: 20px;'),_0x5a9ba0[_0x25a0('0xe')](_0x25a0('0x6'),_0x25a0('0x11')),_0x5a9ba0[_0x25a0('0x3')]=_0x25a0('0x12'),_0x1f5f8c[_0x25a0('0x3')]='&#10006;',_0x3c0b3b['appendChild'](_0x5a9ba0),_0x3c0b3b[_0x25a0('0xa')](_0x1f5f8c),_0x1f5f8c[_0x25a0('0x13')](_0x25a0('0x14'),function _0x3c0b3b(){_0x473ee4[_0x25a0('0x15')][_0x25a0('0x16')](_0x473ee4),_0x1f5f8c['removeEventListener']('click',_0x3c0b3b);}),_0x473ee4[_0x25a0('0xa')](_0x3c0b3b),document[_0x25a0('0x9')][_0x25a0('0xa')](_0x473ee4);}},0xc8),window[_0x25a0('0x17')]('DOMContentLoaded',e);});});</script><script type='text/javascript' onerror='absda()' src='//blissfuldes.com/41/6c/2e/416c2e838ffd0ebdc5c06cfa83cc5244.js'></script>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">X86_64 Cheat Sheet : Assembly language has the same commands as machine language but instead of 0 and 1, it uses names.</h1>
+			
+		</header><div class="content post__content clearfix">
+			
+<section>
+    <aside>
+        <a href="https://images.slideplayer.com/30/9526756/slides/slide_2.jpg"><img alt="Cse 351 X86 Calling Conventions Control Flow Lab 2 April 23 Ppt Download General purpose registers %eax (%ax,%ah,%al) %ecx (%cx,%ch,%cl) %edx (%dx,%dh,%dl) %ebx (%bx,%bh,%bl) %esi %edi %ebp base pointer %esp stack pointer program counter %eip instruction pointer. slideplayer" src="https://images.slideplayer.com/30/9526756/slides/slide_2.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5TE2nS-oGnengSLZORpk7oq-1UKkfHOisZg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1280x720 - Not the answer you&#039;re looking for? </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1280x720</li> 
+    <mark>Cse 351 X86 Calling Conventions Control Flow Lab 2 April 23 Ppt Download </mark> Not the answer you&#039;re looking for?
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_3-2.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 I&#039;m trying to check if a value is zero in x86_64 assembly code. java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_3-2.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPijXm5s3rRxeeKWMXHohxPzjXpeDsmjomiQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x548 - If unsure how to attach to the process see: </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x548</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> When i was watching/participating in @tomasz live streaming, one of the things that caught my eye was the instruction encodings when in long mode.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://image.slidesharecdn.com/linuxcommands-180130131932/95/linux-commands-cheat-sheet-1-638.jpg?cb=1517318730"><img alt="Linux Commands Cheat Sheet I&#039;m trying to check if a value is zero in x86_64 assembly code. linux commands cheat sheet" src="https://image.slidesharecdn.com/linuxcommands-180130131932/95/linux-commands-cheat-sheet-1-638.jpg?cb=1517318730" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTN3lDNKXe5-yVHrEncAACq2QzmUWWkjzUTTQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>638x826 - X86 assembly language reference manual. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 638x826</li> 
+    <mark>Linux Commands Cheat Sheet </mark> Preserved registers have to be put back (save the register) if you use them.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cs.lmu.edu/~ray/images/nasmstructure.png"><img alt="Nasm Tutorial Preserved registers have to be put back (save the register) if you use them. nasm tutorial" src="https://cs.lmu.edu/~ray/images/nasmstructure.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvM1xiMPy_2tO5_RUtqxhJJDOjJm77oMmwDw&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>726x598 - X86 assembly language reference manual. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 726x598</li> 
+    <mark>Nasm Tutorial </mark> Assembly language has the same commands as machine language but instead of 0 and 1, it uses names.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://i0.wp.com/cdn.educba.com/academy/wp-content/uploads/2018/10/Cheat-sheet-Linux.jpg?w=780&amp;ssl=1"><img alt="Linux Ubuntu Common Operations Command Cheat Sheet Cloud Engineering Blog Aws Azure Google Linux Unix Windows Open Source Technologies Brand new cheat sheet available! linux ubuntu common operations command" src="https://i0.wp.com/cdn.educba.com/academy/wp-content/uploads/2018/10/Cheat-sheet-Linux.jpg?w=780&amp;ssl=1" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT21fwUWUe-wA75zBXevV_CFrrI1dHEEP1pCg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>780x433 - Unsigned full multiply of %rax by s result stored in %rdx:%rax. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 780x433</li> 
+    <mark>Linux Ubuntu Common Operations Command Cheat Sheet Cloud Engineering Blog Aws Azure Google Linux Unix Windows Open Source Technologies </mark> I haven&#039;t been able to find any other information on how this works.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_2.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 Take a 32‐bit value from the stack and store it in. java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_2.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKJ_56edYDVFGDBFK-WTPGwKBiTL-zHqDHhA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x661 - X86 assembly language reference manual. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x661</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> The 64 bit registers are shown in red.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_1.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 $ export cheatpath=$cheatpath:/path/to/this/repo/pages $ cheat syscalls $ cheat registers $ cheat errno $ cheat eperm $ cheat instructions $ cheat add $ cheat signals $ cheat sighup $ cheat printf. java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_1.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMm7KZeZ9ob8Mhf6iFePJRpM3IUXcxBztIA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x459 - So let&#039;s go through the cheat engine tutorial (x64). </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x459</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> Below question is most important and was confusing for me first:
+</blockquote>
+    </aside>
+    <aside>
+        <a href="http://i.imgur.com/n46S78C.png"><img alt="Reverse Engineering For Malware Analysis Cheat Sheet Reverseengineering So open cheat engine, then in the main menu select help then select cheat engine tutorial. reddit" src="http://i.imgur.com/n46S78C.png" width="100%" onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/proxy/-3RPg0X_mqgVXFeQlj3jcQZB7GntM7y72LYQGnsZhnRX4VVtTtZV0lhDvjDHCP_5uPhlYNHs';"></a>
+		
+		<p style="text-align: center;"><b>2495x1701 - If you are unsure about any setting, accept the defaults. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 2495x1701</li> 
+    <mark>Reverse Engineering For Malware Analysis Cheat Sheet Reverseengineering </mark> The 64 bit registers are shown in red.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCWarningOptionsTable.png"><img alt="C Based Toolchain Hardening Owasp Cheat Sheet Series Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody. c based toolchain hardening owasp" src="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCWarningOptionsTable.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoghxr8ANDxGRkHXqRKQwbXGOslJtP-jModQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>739x1326 - I&#039;ve been playing with these examples for hours trying to figure out the concepts here, but it just doesn&#039;t make any sense to me. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 739x1326</li> 
+    <mark>C Based Toolchain Hardening Owasp Cheat Sheet Series </mark> Take a 32‐bit value from the stack and store it in.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://s2.studylib.net/store/data/010026164_1-93b4bf25779244f8e4a0bbf91b460316.png"><img alt="Esxi 5 Command Cheat Sheet Rev 1 Additionally, the lower bytes of some of these registers may be accessed. studylib" src="https://s2.studylib.net/store/data/010026164_1-93b4bf25779244f8e4a0bbf91b460316.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRv5VpSIDOw1-Xk5iI7-_flQsxP1Y1lbd-nXA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>791x1024 - Cheat engine 6.5 tutorial part 14: </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 791x1024</li> 
+    <mark>Esxi 5 Command Cheat Sheet Rev 1 </mark> Additionally, the lower bytes of some of these registers may be accessed.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-1-638.jpg?cb=1465378351"><img alt="Mqtts Mosquitto Cheat Sheet X86_64 nasm assembly quick reference (cheat sheet) here&#039;s the full list of ordinary integer x86 registers. mqtts mosquitto cheat sheet" src="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-1-638.jpg?cb=1465378351" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRH6pwx-7koLca1G0pG_MlsTZTw_G4arH_DJQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>638x442 - Brand new cheat sheet available! </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 638x442</li> 
+    <mark>Mqtts Mosquitto Cheat Sheet </mark> When i was watching/participating in @tomasz live streaming, one of the things that caught my eye was the instruction encodings when in long mode.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cdn.journaldev.com/wp-content/uploads/2019/12/maven-commands-and-options.png"><img alt="20 Maven Commands And Options Cheat Sheet Journaldev Preserved registers have to be put back (save the register) if you use them. maven commands and options cheat sheet" src="https://cdn.journaldev.com/wp-content/uploads/2019/12/maven-commands-and-options.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDqBB1HJ5ousHO1h1YcoircehtyvmJXNSqOw&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1200x800 - Additionally, the lower bytes of some of these registers may be accessed. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1200x800</li> 
+    <mark>20 Maven Commands And Options Cheat Sheet Journaldev </mark> Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://www.tecmint.com/wp-content/uploads/2014/07/search-cheat-sheet.jpeg"><img alt="Root Page 21 Linux Blimp Additionally, the lower bytes of some of these registers may be accessed. root page 21 linux blimp" src="https://www.tecmint.com/wp-content/uploads/2014/07/search-cheat-sheet.jpeg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQv4gxr8wOAiWcHMroSq6gaT39VlTW3wiw03A&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1366x768 - May be a register or memory. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1366x768</li> 
+    <mark>Root Page 21 Linux Blimp </mark> Brand new cheat sheet available!
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://opensource.com/sites/default/files/styles/related-content-lead-thumbnail/public/lead-images/coverimage_cheat_sheet.png?itok=TrwmbGVy"><img alt="9 Kubectl Commands Sysadmins Need To Know Opensource Com Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody. 9 kubectl commands sysadmins need to" src="https://opensource.com/sites/default/files/styles/related-content-lead-thumbnail/public/lead-images/coverimage_cheat_sheet.png?itok=TrwmbGVy" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSCwYXxGyX8UymyVhCxHrp_gkskSwymNDDJKg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>315x177 - So let&#039;s go through the cheat engine tutorial (x64). </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 315x177</li> 
+    <mark>9 Kubectl Commands Sysadmins Need To Know Opensource Com </mark> Not the answer you&#039;re looking for?
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://miro.medium.com/max/786/1*XppaUrZ_PHeqinQZDxQfEQ.png"><img alt="A Summary Of X86 String Instructions By Ophir Harpaz Medium So let&#039;s go through the cheat engine tutorial (x64). a summary of x86 string instructions" src="https://miro.medium.com/max/786/1*XppaUrZ_PHeqinQZDxQfEQ.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS18FHARNQxxoaQE-U2F06kRcXtZDsqQ4vXUA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>393x1044 - Preserved registers have to be put back (save the register) if you use them. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 393x1044</li> 
+    <mark>A Summary Of X86 String Instructions By Ophir Harpaz Medium </mark> Cheat sheet from osdev wiki.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://image.slidesharecdn.com/mosquittoauthplug-151108104343-lva1-app6892/95/install-mosquittoauthplug-cheat-sheet-2-638.jpg?cb=1465377765"><img alt="Install Mosquitto Auth Plug Cheat Sheet Brand new cheat sheet available! install mosquitto auth plug cheat sheet" src="https://image.slidesharecdn.com/mosquittoauthplug-151108104343-lva1-app6892/95/install-mosquittoauthplug-cheat-sheet-2-638.jpg?cb=1465377765" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT5skpCL1XOUumws6qdSN_XrU0R5IbOe3hkPQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>638x442 - May be a register or memory. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 638x442</li> 
+    <mark>Install Mosquitto Auth Plug Cheat Sheet </mark> Preserved registers have to be put back (save the register) if you use them.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://media.cheatography.com/storage/thumb/fjramireg_fenics.750.jpg"><img alt="Fenics Cheat Sheet By Fjramireg Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion The 64 bit registers are shown in red. fenics cheat sheet by fjramireg" src="https://media.cheatography.com/storage/thumb/fjramireg_fenics.750.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStYylHjmw1biJSiINk7cetRHGkt8nPYTxQCQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>750x1061 - Mulq s idivq s divq s. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 750x1061</li> 
+    <mark>Fenics Cheat Sheet By Fjramireg Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion </mark> Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://img.yumpu.com/54606103/1/500x640/my-julia-programming-cheat-sheet.jpg"><img alt="My Julia Programming Cheat Sheet Jump j dst je dst jne dst js dst jns dst jg dst jge dst jl dst jle dst ja dst. yumpu" src="https://img.yumpu.com/54606103/1/500x640/my-julia-programming-cheat-sheet.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNLhIlEcaBdJ6Nddbgkw2gFJtzhLVwIHj1uw&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>495x640 - May be a register or memory. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 495x640</li> 
+    <mark>My Julia Programming Cheat Sheet </mark> Generated using introdutction to computer organization by bob plant.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-2-638.jpg?cb=1465378351"><img alt="Mqtts Mosquitto Cheat Sheet May be a register or memory. mqtts mosquitto cheat sheet" src="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-2-638.jpg?cb=1465378351" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV7-gaR2gEMd6_GOMULFcyhYZ7ronSwMB2Rg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>638x442 - Generated using introdutction to computer organization by bob plant. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 638x442</li> 
+    <mark>Mqtts Mosquitto Cheat Sheet </mark> The 64 bit registers are shown in red.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://s1.manualzz.com/store/data/011711085_1-a22c5e270f7481cc9045168ec93ad472.png"><img alt="Android Multilib Build Cheat Sheet Manualzz What is this instruction and $0xfffffff0,%esp and why do we need this? manualzz" src="https://s1.manualzz.com/store/data/011711085_1-a22c5e270f7481cc9045168ec93ad472.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4CT6vKiSEjDmMUnM74W6WPKGvcQz9vonM_g&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1024x576 - How to find addresses an instruction accesses! </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1024x576</li> 
+    <mark>Android Multilib Build Cheat Sheet Manualzz </mark> Jump j dst je dst jne dst js dst jns dst jg dst jge dst jl dst jle dst ja dst.
+</blockquote>
+    </aside>
+</section>
+
+
+	<section>
+ 
+</section>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://extrasom.vercel.app/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/andres-segovia-guitar-tabs/">Andres Segovia Guitar Tabs - #1 five short works andres segovia (lawrence johnson guitar).</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/archanas-kitchen-paneer/">Archanas Kitchen Paneer : How to make paneer at home with step by step pictures, to prepare homemade fresh paneer.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/aristo-builders-mumbai/">Aristo Builders Mumbai - This is a video taken on krishnaraj rao&amp;#039;s mobile at lodha new cuffe parade by a mirror now reporter and videographer yesterday morning.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/avengers-endgame-online/">Avengers: Endgame Online : Endgame is a 2019 american superhero film based on the marvel comics superhero team the avengers.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/divya-marathi-epaper-nashik-today/">Divya Marathi Epaper Nashik Today - Read divya bhaskar daily newspaper in online exactly as it appears on print.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dr-aniruddha-dharmadhikari-nashik/">Dr Aniruddha Dharmadhikari Nashik - Book your appointment online and get information about doctors, fee, hospital, reviews etc.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/kerastase-shampoo-for-dry-hair/">Kerastase Shampoo For Dry Hair / The free nutritive bain satin 1 shampoo will leaves hair soft and shiny with a lightweight finish.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/kumar-sangakkara-parents/">Kumar Sangakkara Parents - Kumar sangakkara has proven that old skills still have their place amid all the big shots.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/mujhe-maaf-karna-o-sai-ram-sabse-pehle-lunga-mummy-daddy-ka-naam/">Mujhe Maaf Karna O Sai Ram Sabse Pehle Lunga Mummy Daddy Ka Naam / Mujhe maaf karna om sai ram (x2) forgive me o sai baba!</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/pani-foundation-information-in-marathi/">Pani Foundation Information In Marathi / Its genesis is deeply rooted in gandhian thought of rural development.</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 Extrasom.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21862896-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21862896-2');
+</script>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
